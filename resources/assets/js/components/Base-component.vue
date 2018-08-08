@@ -27,9 +27,9 @@
           <img src="/images/avatar.png" alt="avatar">
         </v-avatar>
         <span class="hidden-sm-and-down">admin@admin.com</span>
-        <v-btn small color="primary">Wyloguj</v-btn>
+        <v-btn class="logout" color="primary">Wyloguj</v-btn>
     </v-toolbar>
-    <v-content>
+    <v-content style="padding-top:40px;">
       <v-container>
         <transition name="fade" mode="out-in">
           <router-view></router-view>
@@ -93,5 +93,13 @@
 <style lang="scss" scoped>
   .v-toolbar{
     box-shadow: none;
+  }
+  .logout{
+    margin-bottom: 0;
+    margin-left: 10px;
+  }
+  .v-avatar{
+    margin-left: 10px;
+    margin-right: 10px;
   }
 </style>

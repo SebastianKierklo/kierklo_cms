@@ -69,8 +69,8 @@ data: () => ({
         { icon: 'verified_user', text: 'Uprawnienia', link: '/permissions'},
         { icon: 'view_quilt', text: 'Kreator', link: '/creator'},
 
-        // { icon: 'file_copy', text: 'Pliki', link: '/files'},
-        // { icon: 'settings', text: 'Ustawienia', link: '/settings'},
+        { icon: 'file_copy', text: 'Pliki', link: '/files'},
+        { icon: 'settings', text: 'Ustawienia', link: '/settings'},
 
         // {
         //   icon: 'keyboard_arrow_up',

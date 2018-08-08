@@ -8,13 +8,14 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 Vue.use(Vuetify,{
     theme:{
-        primary: "#424242",
+        primary: "#315892",
         secondary: "#616161",
-        accent: "#448AFF",
-        error: "#C62828",
-        warning: "#FDD835",
-        info: "#2196f3",
-        success: "#4caf50"
+        accent: "#0B65AD",
+        error: "#bb3c3c",
+        warning: "#ffdd4a",
+        info: "#3e9fec",
+        success: "#59bb5d",
+        tabs: '#333C54',
       }
 });
 

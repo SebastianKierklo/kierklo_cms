@@ -1,6 +1,93 @@
+@import "variables";
+// @import "../../../node_modules/vuetify/dist/vuetify.css";
+@import "vuetify.css";
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+.v-toolbar__content{
+  height: 50px!important;
+}
+.v-navigation-drawer{
+  margin-top: 46px!important;
+}
+.v-btn{
+  box-shadow: none!important;
+  margin: 0;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid;
+  border-radius: 0;
+}
+.application .theme--dark.v-toolbar, .theme--dark .v-toolbar{
+  background-color: #333C54;
+}
+.application .theme--light.v-navigation-drawer .v-divider, .application .theme--light.v-navigation-drawer:not(.v-navigation-drawer--floating) .v-navigation-drawer__border, .theme--light .v-navigation-drawer .v-divider, .theme--light .v-navigation-drawer:not(.v-navigation-drawer--floating) .v-navigation-drawer__border{
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.window{
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  border-top: 3px solid $blue2;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  &-title{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    width: calc(100% + 20px);
+    position: relative;
+    right: 10px;
+    top: -10px;
+    font-size: 18px;
+    line-height: 40px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+  }
+}
+.elevation-1{
+  box-shadow: none!important;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.router-link-active{
+  .v-list__tile{
+    border-left: 4px solid $blue3;
+  }
+}
+.v-list__tile{
+  color: rgba(0,0,0,.54);
+}
+.v-alert.v-alert{
+  border: 1px solid;
+  border-radius:2px;
+}
+.v-tabs{
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.v-tabs__slider{
+  height: 4px;
+}
+.v-tabs__item{
+  color: white;
+}
+.v-text-field--box .v-input__slot, .v-text-field--outline .v-input__slot{
+  min-height: 35px;
+}
+.lang-select.v-select.v-text-field--enclosed:not(.v-text-field--single-line) .v-select__selections{
+  padding-top: 0!important;
+}
+.v-input__icon{
+  height: 0;
+}
+.v-card__title{
+  padding: 10px;
+  border-top: 3px solid $blue2!important;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.v-breadcrumbs{
+  padding: 10px;
 }
