@@ -28,7 +28,7 @@
     </v-layout>  
     <div class="window">
       <div class="window-title">Strony</div>
-      
+        <loader :loading="loaing" :message="'Pobiernie danych...'"></loader>
     </div>
   </div>
 </template>
@@ -36,6 +36,7 @@
 export default {
   data () {
     return {
+      loaing:true,
       items: [
         {
           text: 'Dashboard',

@@ -27,7 +27,7 @@
           <img src="/images/avatar.png" alt="avatar">
         </v-avatar>
         <span class="hidden-sm-and-down">admin@admin.com</span>
-        <v-btn class="logout" color="primary">Wyloguj</v-btn>
+        <v-btn class="logout" v-on:click="logout()" color="primary">Wyloguj</v-btn>
     </v-toolbar>
     <v-content style="padding-top:40px;">
       <v-container>
@@ -44,38 +44,6 @@
     data: () => ({
       dialog: false,
       drawer: true,
-      items: [
-        { icon: 'contacts', text: 'Contacts' },
-        { icon: 'history', text: 'Frequently contacted' },
-        { icon: 'content_copy', text: 'Duplicates' },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'Labels',
-          model: true,
-          children: [
-            { icon: 'add', text: 'Create label' }
-          ]
-        },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'More',
-          model: false,
-          children: [
-            { text: 'Import' },
-            { text: 'Export' },
-            { text: 'Print' },
-            { text: 'Undo changes' },
-            { text: 'Other contacts' }
-          ]
-        },
-        { icon: 'settings', text: 'Settings' },
-        { icon: 'chat_bubble', text: 'Send feedback' },
-        { icon: 'help', text: 'Help' },
-        { icon: 'phonelink', text: 'App downloads' },
-        { icon: 'keyboard', text: 'Go to the old version' }
-      ],
       valid: false,
       name: '',
       nameRules: [
@@ -87,7 +55,23 @@
         v => !!v || 'E-mail is required',
         v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
       ]
-    })
+    }),
+    methods: {
+      logout: function(){
+        axios.post('/logout')
+            .then(response => {
+                Vue.toasted.show(response.data.message, { 
+                    theme: "primary", 
+                    position: "top-right", 
+                    duration : 5000
+                });   
+                location.reload();        
+            })
+            .catch(e => {
+                Vue.toasted.show(e);
+            });
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>

@@ -22,6 +22,7 @@
     "dependencies": {
         "babel-polyfill": "^6.26.0",
         "vue-router": "^3.0.1",
+        "vue-toasted": "^1.1.24",
         "vuetify": "^1.1.1"
     }
 }

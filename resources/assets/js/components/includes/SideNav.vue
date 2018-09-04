@@ -63,14 +63,14 @@
 export default {
 data: () => ({
       items: [
-        { icon: 'dashboard', text: 'Dashboard', link:'/' },
-        { icon: 'laptop', text: 'Podstrony', link: '/pages' },
-        { icon: 'perm_identity' , text: 'Użytkownicy', link: '/users'},
-        { icon: 'verified_user', text: 'Uprawnienia', link: '/permissions'},
-        { icon: 'view_quilt', text: 'Kreator', link: '/creator'},
+        { icon: 'dashboard', text: 'Dashboard', link:'/admin/dashboard' },
+        { icon: 'laptop', text: 'Podstrony', link: '/admin/pages' },
+        { icon: 'perm_identity' , text: 'Użytkownicy', link: '/admin/users'},
+        { icon: 'verified_user', text: 'Uprawnienia', link: '/admin/permissions'},
+        { icon: 'view_quilt', text: 'Kreator', link: '/admin/creator'},
 
-        { icon: 'file_copy', text: 'Pliki', link: '/files'},
-        { icon: 'settings', text: 'Ustawienia', link: '/settings'},
+        { icon: 'file_copy', text: 'Pliki', link: '/admin/files'},
+        { icon: 'settings', text: 'Ustawienia', link: '/admin/settings'},
 
         // {
         //   icon: 'keyboard_arrow_up',

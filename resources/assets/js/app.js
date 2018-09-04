@@ -4,7 +4,9 @@ import 'babel-polyfill';
 window.Vue = require('vue');
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
+import Toasted from 'vue-toasted';
 
+Vue.use(Toasted)
 Vue.use(VueRouter);
 Vue.use(Vuetify,{
     theme:{
@@ -21,7 +23,9 @@ Vue.use(Vuetify,{
 
 // Components
 Vue.component('base-component', require('./components/Base-component.vue'));
+Vue.component('login-component', require('./components/Login-component.vue'));
 Vue.component('side-nav',require('./components/includes/SideNav.vue'));
+Vue.component('loader',require('./components/includes/Loader-component.vue'));
 
 const DashboardScoop = Vue.component('DashboardComponent',require('./components/pages/dashboard/Dashboard.vue'));
 const FilesScoop = Vue.component('FilesComponent',require('./components/pages/files/Files.vue'));
@@ -33,13 +37,14 @@ const CreatorScoop = Vue.component('CreatorComponent',require('./components/page
 
 // Routes
 const routes = [
-  { path: '/', component: DashboardScoop, bread: 'Dashboard' },
-  { path: '/files', component: FilesScoop },
-  { path: '/pages', component: PagesScoop },
-  { path: '/permissions', component: PermissionsScoop },
-  { path: '/settings', component: SettingsScoop },
-  { path: '/users', component: UsersScoop },
-  { path: '/creator', component: CreatorScoop },
+    // { path: '/admin/', name: 'dashboard', component: DashboardScoop},
+    { path: '/admin/dashboard', name: 'dashboard', component: DashboardScoop},
+    { path: '/admin/files', component: FilesScoop },
+    { path: '/admin/pages', component: PagesScoop },
+    { path: '/admin/permissions', component: PermissionsScoop },
+    { path: '/admin/settings', component: SettingsScoop },
+    { path: '/admin/users', component: UsersScoop },
+    { path: '/admin/creator', component: CreatorScoop },
 ];
 
 const router = new VueRouter({
@@ -47,8 +52,18 @@ const router = new VueRouter({
   mode: 'history'
 });
 
-const app = new Vue({
-    router: router,
-    el: '#app',
-    template: '<base-component></base-component>'
-});
+if($("#app").length != 0) {
+  const app = new Vue({
+      router: router,
+      el: '#app',
+      template: '<base-component></base-component>'
+  });
+}
+
+if($("#login").length != 0) {
+  const app2 = new Vue({
+    el: '#login',
+    template: '<login-component></login-component>'
+  });
+}
+
