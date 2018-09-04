@@ -11971,3 +11971,20 @@ table.v-table tfoot tr td {
   font-family: 'Roboto', sans-serif;
 }
 
+.dg-main-content {
+  font-family: 'Roboto', sans-serif;
+}
+
+.dg-btn {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  margin: 0 !important;
+  margin-bottom: 10px !important;
+  margin-right: 10px !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid !important;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  font-size: 14px !important;
+}
+

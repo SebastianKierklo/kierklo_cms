@@ -48,11 +48,7 @@
             this.isLoading = true;
             axios.post('/login',this.form)
             .then(response => {
-                Vue.toasted.show(response.data.message, { 
-                    theme: "primary", 
-                    position: "top-right", 
-                    duration : 5000
-                });   
+                Vue.toasted.show(response.data.message);
                 if(response.data.result){
                     window.location.href = '/admin/dashboard';
                 }

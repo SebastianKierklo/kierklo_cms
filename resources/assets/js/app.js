@@ -6,7 +6,19 @@ import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import Toasted from 'vue-toasted';
 
-Vue.use(Toasted)
+import VuejsDialog from 'vuejs-dialog';
+
+// include the default style
+import 'vuejs-dialog/dist/vuejs-dialog.min.css';
+
+// Tell Vue to install the plugin.
+Vue.use(VuejsDialog);
+
+Vue.use(Toasted, {
+    theme: "primary",
+    position: "top-right",
+    duration : 2000
+});
 Vue.use(VueRouter);
 Vue.use(Vuetify,{
     theme:{
