@@ -6,6 +6,9 @@
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 .v-toolbar__content{
   height: 50px!important;
@@ -110,4 +113,7 @@
   border-radius: 0!important;
   text-transform: uppercase;
   font-size: 14px!important;
+}
+.m-pointer:hover{
+  cursor: pointer;
 }

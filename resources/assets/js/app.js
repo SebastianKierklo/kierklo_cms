@@ -52,7 +52,7 @@ const routes = [
     // { path: '/admin/', name: 'dashboard', component: DashboardScoop},
     { path: '/admin/dashboard', name: 'dashboard', component: DashboardScoop},
     { path: '/admin/files', component: FilesScoop },
-    { path: '/admin/pages', component: PagesScoop },
+    { path: '/admin/pages', component: PagesScoop, name: 'pages'},
     { path: '/admin/permissions', component: PermissionsScoop },
     { path: '/admin/settings', component: SettingsScoop },
     { path: '/admin/users', component: UsersScoop },

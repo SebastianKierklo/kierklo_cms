@@ -58,7 +58,6 @@
                             class="elevation-1"
                     >
                         <template slot="items" slot-scope="props">
-                            <td>{{ props.item.id }}</td>
                             <td>{{ props.item.name }}</td>
                             <td>{{ props.item.value }}</td>
                             <td>
@@ -110,7 +109,7 @@
                             <td> <i v-confirm="{
                                 ok: dialog => removeSetting(props.item),
                                 message: 'Czy na pewno chcesz skasować ten element?'}"
-                                    class="material-icons">delete</i> </td>
+                                    class="material-icons m-pointer">delete</i> </td>
                         </template>
                     </v-data-table>
                 </v-flex>
@@ -133,12 +132,6 @@ export default {
             dialogEdit :false,
             settings : [],
             headers: [
-                {
-                    text: 'Id.',
-                    align: 'left',
-                    sortable: false,
-                    value: 'name'
-                },
                 { text: 'Nazwa', value: 'name' },
                 { text: 'Wartość', value: 'value' },
                 { text: 'Edycja', sortable: false},

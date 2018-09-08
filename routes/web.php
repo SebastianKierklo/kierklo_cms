@@ -13,6 +13,11 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->group(function (
     Route::post('/settings','SettingController@index');
     Route::post('/settings/add','SettingController@add');
     Route::post('/settings/remove','SettingController@remove');
+    Route::post('/creator-fields','AdminController@getFields');
+
+    Route::post('/page/add','PageController@postAdd');
+    Route::post('/page/list','PageController@postList');
+    Route::post('/page/delete/{id}','PageController@postDelete');
 
     Route::get('/dashboard', function () {
         return view('welcome');

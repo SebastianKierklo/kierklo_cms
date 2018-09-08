@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="window">
+    <v-flex class="window">
       <div class="window-title">Dashboard</div>
       <v-flex xs12 sm6>
         <v-card>
@@ -42,7 +42,7 @@
           </v-card-title>
         </v-card>
       </v-flex>
-    </div>
+    </v-flex>
   </div>
 </template>
 <script>

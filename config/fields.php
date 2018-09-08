@@ -2,21 +2,21 @@
 
 return [
     'fields' => [
-        0 => [
-            'type' => 'varchar',
-            'name' => 'Krótki tekst',
+        [
+            'value' => 'varchar',
+            'text' => 'Krótki tekst',
         ],
-        1 => [
-            'type' => 'text',
-            'name' => 'Długi tekst'
+        [
+            'value' => 'text',
+            'text' => 'Długi tekst'
         ],
-        3 => [
-            'type' => 'file',
-            'name' => 'Plik'
-        ],
-        4 => [
-            'type' => 'image',
-            'name' => 'Zdjęcie'
-        ]
+//        [
+//            'value' => 'file',
+//            'text' => 'Plik'
+//        ],
+//        [
+//            'value' => 'image',
+//            'text' => 'Zdjęcie'
+//        ]
     ]
 ];

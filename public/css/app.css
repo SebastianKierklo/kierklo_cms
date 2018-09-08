@@ -11853,6 +11853,9 @@ table.v-table tfoot tr td {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
 .v-toolbar__content {
@@ -11986,5 +11989,9 @@ table.v-table tfoot tr td {
   border-radius: 0 !important;
   text-transform: uppercase;
   font-size: 14px !important;
+}
+
+.m-pointer:hover {
+  cursor: pointer;
 }
 

@@ -1,34 +1,30 @@
 <template>
   <div>
-    <v-layout row wrap>
-      <v-flex xs12 sm8>
-        <v-breadcrumbs divider="/">
-          <v-breadcrumbs-item
-            v-for="item in items"
-            :key="item.text"
-            :disabled="item.disabled"
-          >
-            {{ item.text }}
-          </v-breadcrumbs-item>
-        </v-breadcrumbs>        
-      </v-flex>
-      <v-flex xs12 sm1>
-        <div class="text-xs-center">
-          <p style="margin-top:7px;">Język</p>
-        </div>
-      </v-flex>
-      <v-flex xs12 sm3>
-        <v-select
-          :items="items"
-          box
-          hide-details
-          class="lang-select"
-        ></v-select>
-      </v-flex>
-    </v-layout>  
     <div class="window">
       <div class="window-title">Strony</div>
-        <loader :loading="loaing" :message="'Pobiernie danych...'"></loader>
+        <loader :loading="isLoaded" :message="messageLoaded"></loader>
+        <transition name="fade" mode="out-in">
+          <v-data-table
+                  :headers="headers"
+                  :items="pages"
+                  :rowsPerPageText="'Wierszy na stronie'"
+                  class="elevation-1"
+                  v-if="!isLoaded"
+          >
+            <template slot="items" slot-scope="props">
+              <td>{{ props.item.name }}</td>
+              <td><v-icon @click="">table_chart</v-icon></td>
+              <td><v-icon @click="">edit</v-icon></td>
+              <td>
+                <v-icon
+                    class="m-pointer"
+                    v-confirm="{ok: dialog => removePage(props.item.id), message: 'Czy na pewno chcesz skasować ten element?'}"
+                >delete</v-icon>
+              </td>
+            </template>
+          </v-data-table>
+        </transition>
+
     </div>
   </div>
 </template>
@@ -36,22 +32,48 @@
 export default {
   data () {
     return {
-      loaing:true,
-      items: [
-        {
-          text: 'Dashboard',
-          disabled: false
-        },
-        {
-          text: 'Link 1',
-          disabled: false
-        },
-        {
-          text: 'Link 2',
-          disabled: true
-        }
-      ]
+        isLoaded:false,
+        messageLoaded: 'Pobiernie danych...',
+        selectedLang: null,
+        pages: [],
+        headers: [
+            {text:'Nazwa',value:'name'},
+            {text:'Edycja(kreator)',sortable:false},
+            {text:'Edycja(treść)',sortable:false},
+            {text:'Usuń',sortable:false}
+        ]
     }
+  },
+  mounted: function () {
+      this.getData();
+  },
+  methods:{
+      getData: function () {
+          this.messageLoaded = 'Pobiernie danych...';
+          this.isLoaded = true;
+          axios.post('/admin/page/list')
+              .then(response => {
+                  this.pages = response.data.data.pages;
+                  this.isLoaded = false;
+              })
+              .catch(e => {
+                  Vue.toasted.show(e);
+              });
+      },
+      removePage: function (id) {
+          this.messageLoaded = 'Kasowanie...';
+          this.isLoaded = true;
+          axios.post('/admin/page/delete/'+id)
+              .then(response => {
+                  if(response.data.result){
+                      this.getData();
+                  }
+                  Vue.toasted.show(response.data.message);
+              })
+              .catch(e =>{
+                  Vue.toasted.show(e);
+              });
+      }
   }
 }
 </script>

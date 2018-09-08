@@ -1,161 +1,247 @@
 <template>
     <div>
-        <h2>Kreator</h2>
-        <v-flex xs12 sm4 offset-sm8 d-flex justify-end>
-            <div class="text-xs-center">
-                <p style="margin-top:7px;">Język</p>
-            </div>
-            <v-select
-                    :items="items"
-                    box
-                    class="lang-select"
-            ></v-select>
-        </v-flex>
+        <v-layout row wrap>
+            <v-flex xs12 sm8>
+                <!--<v-breadcrumbs divider="/">-->
+                    <!--<v-breadcrumbs-item-->
+                            <!--v-for="item in items"-->
+                            <!--:key="item.text"-->
+                            <!--:disabled="item.disabled"-->
+                    <!--&gt;-->
+                        <!--{{ item.text }}-->
+                    <!--</v-breadcrumbs-item>-->
+                <!--</v-breadcrumbs>-->
+            </v-flex>
+        </v-layout>
         <div class="window">
-            <div class="window-title">Tytuł</div>
-            <v-row>
-                <v-btn color="success">Success</v-btn>
-                <v-btn color="error">Error</v-btn>
-                <v-btn color="warning">Warning</v-btn>
-                <v-btn color="info">Info</v-btn>
-            </v-row>
-            <v-row>
-                <v-form v-model="valid">
-                    <v-text-field
-                            v-model="name"
-                            :rules="nameRules"
-                            :counter="10"
-                            label="Name"
-                            required
-                    ></v-text-field>
-                    <v-text-field
-                            v-model="email"
-                            :rules="emailRules"
-                            label="E-mail"
-                            required
-                    ></v-text-field>
-                    <v-flex xs12 sm6 d-flex>
-                        <v-select
-                                :items="items"
-                                label="Standard"
-                        ></v-select>
-                    </v-flex>
-                    <v-btn color="info" >Info</v-btn>
-                </v-form>
-            </v-row>
-            <v-row>
+            <div class="window-title">Kreator</div>
+            <loader :loading="isLoaded" :message="loaderMessage"></loader>
+            <transition name="fade" mode="out-in">
+                <v-form v-if="!isLoaded">
+                <v-text-field
+                        v-model="form.name"
+                        :counter="100"
+                        label="Nazwa podstrony"
+                        required
+                ></v-text-field>
+                <v-dialog
+                        v-model="dialogAdd"
+                        width="500"
+                >
+                    <v-btn
+                        absolute
+                        dark
+                        fab
+                        bottom
+                        right
+                        color="primary"
+                        slot="activator"
+                    >
+                        <v-icon>add</v-icon>
+                    </v-btn>
+
+                    <v-card>
+                        <v-card-title
+                            class="headline"
+                            primary-title
+                        >
+                            Dodawanie pola
+                        </v-card-title>
+                        <v-form>
+                            <v-card-text>
+                                <v-text-field
+                                    v-model="newItem.name"
+                                    :counter="15"
+                                    label="Nazwa pola"
+                                ></v-text-field>
+                            </v-card-text>
+                            <v-card-text>
+                                <v-select
+                                    v-model="newItem.type"
+                                    :items="fieldsType"
+                                    label="Typ pola"
+                                ></v-select>
+                            </v-card-text>
+                            <v-card-text>
+                                <v-checkbox
+                                    v-model="newItem.nullable"
+                                    label="Czy pole ma być wymagane?"
+                                ></v-checkbox>
+                            </v-card-text>
+
+                            <v-card-text>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                    color="primary"
+                                    flat
+                                    @click="addItem()"
+                                >
+                                    <i class="material-icons">add</i>
+                                    Dodaj
+                                </v-btn>
+                                <v-btn
+                                    color="primary"
+                                    v-on:click="dialogAdd = false"
+                                    flat
+                                >
+                                    <i class="material-icons">cancel</i>
+                                    <span>Anuluj</span>
+                                </v-btn>
+                            </v-card-text>
+                        </v-form>
+                    </v-card>
+                </v-dialog>
                 <v-data-table
                         :headers="headers"
-                        :items="desserts"
+                        :items="form.fields"
                         hide-actions
                         class="elevation-1"
                 >
                     <template slot="items" slot-scope="props">
                         <td>{{ props.item.name }}</td>
-                        <td class="text-xs-right">{{ props.item.calories }}</td>
-                        <td class="text-xs-right">{{ props.item.fat }}</td>
-                        <td class="text-xs-right">{{ props.item.carbs }}</td>
-                        <td class="text-xs-right">{{ props.item.protein }}</td>
-                        <td class="text-xs-right">{{ props.item.iron }}</td>
+                        <td>
+                            <span v-if="props.item.nullable">Wymagane</span>
+                            <span v-else>Opcjonalne</span>
+                        </td>
+                        <td><v-icon @click="removeItem(props.item.id)">delete</v-icon></td>
                     </template>
                 </v-data-table>
-            </v-row>
-            <v-row>
-                <v-dialog
-                        v-model="dialog"
-                        width="500"
+
+                <v-btn
+                    color="primary"
+                    @click="savePage()"
+                    style="margin-top: 15px;"
+                    submit
                 >
-                    <v-btn
-                            slot="activator"
-                            primary
-                    >
-                        Click Me
-                    </v-btn>
-
-                    <v-card>
-                        <v-card-title
-                                class="headline"
-                                primary-title
-                        >
-                            Privacy Policy
-                        </v-card-title>
-
-                        <v-card-text>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </v-card-text>
-
-                        <v-divider></v-divider>
-
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn
-                                    color="primary"
-                                    flat
-                                    @click="dialog = false"
-                            >
-                                I accept
-                            </v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </v-dialog>
-            </v-row>
-            <v-row>
-                <v-alert
-                        v-model="success"
-                        type="success"
-                        dismissible
-                >
-                    This is a success alert.
-                </v-alert>
-
-                <v-alert
-                        :value="true"
-                        type="info"
-                >
-                    This is a info alert.
-                </v-alert>
-
-                <v-alert
-                        :value="true"
-                        type="warning"
-                >
-                    This is a warning alert.
-                </v-alert>
-
-                <v-alert
-                        :value="true"
-                        type="error"
-                >
-                    This is a error alert.
-                </v-alert>
-            </v-row>
+                    <i class="material-icons">save</i>
+                    <span>Zapisz</span>
+                </v-btn>
+            </v-form>
+            </transition>
         </div>
-        <v-tabs
-                v-model="active"
-                color="tabs"
-                slider-color="accent"
-        >
-            <v-tab
-                    v-for="n in 3"
-                    :key="n"
-                    ripple
-            >
-                Item {{ n }}
-
-            </v-tab>
-            <v-tab-item
-                    v-for="n in 3"
-                    :key="n"
-            >
-                <v-card flat>
-                    <v-card-text>DUPA {{n}}</v-card-text>
-                </v-card>
-            </v-tab-item>
-        </v-tabs>
     </div>
 </template>
 <script>
     export default {
+        data() {
+            return {
+                isLoaded: false,
+                loaderMessage: '',
+                fieldsType: [],
+                form: {
+                    name: '',
+                    fields: []
+                },
+                headers:[
+                    {text:'Nazwa pola', sortable:false, value:'name'},
+                    {text:'Czy pole wymagane',sortable:false, value:'nullable'},
+                    {text:'Usuń',sortable:false}
+                ],
+                dialogAdd: false,
+                idSet: 0,
+                newItem:{
+                    id: 0,
+                    type: '',
+                    name: '',
+                    nullable: false
+                }
+            }
+        },
+        mounted: function () {
+            this.getFields();
+        },
+        methods: {
+            getFields: function(){
+                this.isLoaded = true;
+                this.loaderMessage = "Pobieranie danych";
+                axios.post('/admin/creator-fields')
+                    .then(response => {
+                        this.fieldsType = response.data.fields;
+                        this.isLoaded = false;
+                    })
+                    .catch(r => {
+                        Vue.toasted.show(e);
+                    });
+            },
+            addItem: function(){
+                var valid = this.validItem();
+                if(valid.result){
+                    this.newItem.id = this.idSet;
+                    this.idSet++;
+                    this.form.fields.push(this.newItem);
+                    this.newItem  = {
+                        id:0,
+                        type: '',
+                        name: '',
+                        nullable: false
+                    };
+                    this.dialogAdd = false;
+                }else{
+                    Vue.toasted.show(valid.message);
+                }
 
+            },
+            removeItem: function(id){
+                var tmpLp = null;
+                this.form.fields.forEach(function(val,index){
+                    if(val.id == id){
+                        tmpLp = index;
+                    }
+                });
+                this.form.fields.pop(tmpLp);
+            },
+            savePage: function () {
+                var valid = this.validForm();
+                if(valid.result){
+                    this.loaderMessage = "Trwa dodawanie.";
+                    this.isLoaded = true;
+                    axios.post('/admin/page/add',this.form)
+                        .then(response => {
+                            this.isLoaded = false;
+                            Vue.toasted.show(response.data.message);
+                            if(response.data.result){
+                                this.$router.push('/admin/pages');
+                            }
+                        })
+                        .catch(e =>{
+                            Vue.toasted.show(e);
+                        });
+                }else{
+                    Vue.toasted.show(valid.message);
+                }
+            },
+            validItem: function(){
+                var valid = {
+                    result:true,
+                    message: 'Dodano nowe pole.'
+                };
+                if(this.newItem.name == '' || this.newItem.type == ''){
+                    valid.result = false;
+                    valid.message = "Uzupełnij dane";
+                }
+                return valid;
+            },
+            validForm: function () {
+                var valid = {
+                    result:true,
+                    message: 'Dodano nowe pole.'
+                };
+                if(this.form.name == '' || this.form.fields.length == 0){
+                    valid.result = false;
+                    valid.message = "Uzupełnij dane";
+                }
+                return valid;
+            }
+        }
     }
 </script>
+<style lang="scss" scoped>
+    .v-btn--bottom{
+        bottom: 0;
+    }
+    .v-btn{
+        span{
+            margin-left:8px;
+        }
+    }
+</style>
