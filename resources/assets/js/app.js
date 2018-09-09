@@ -42,21 +42,35 @@ Vue.component('loader',require('./components/includes/Loader-component.vue'));
 const DashboardScoop = Vue.component('DashboardComponent',require('./components/pages/dashboard/Dashboard.vue'));
 const FilesScoop = Vue.component('FilesComponent',require('./components/pages/files/Files.vue'));
 const PagesScoop = Vue.component('PagesComponent',require('./components/pages/pages/Pages.vue'));
+const PagesEditScoop = Vue.component('PagesEditComponent',require('./components/pages/pages/Pages-edit.vue'));
 const PermissionsScoop = Vue.component('PermissionsComponent',require('./components/pages/permissions/Permissions.vue'));
 const SettingsScoop = Vue.component('SettingsComponent',require('./components/pages/settings/Settings.vue'));
 const UsersScoop = Vue.component('UsersComponent',require('./components/pages/users/Users.vue'));
 const CreatorScoop = Vue.component('CreatorComponent',require('./components/pages/creator/Creator.vue'));
+const CreatorEditScoop = Vue.component('CreatorEditComponent',require('./components/pages/creator/Creator-edit.vue'));
+const DevelopmentScoop = Vue.component('DevelopmentComponent', require('./components/pages/development/Development.vue'))
 
 // Routes
 const routes = [
-    // { path: '/admin/', name: 'dashboard', component: DashboardScoop},
+    { path: '/admin', redirect: '/admin/dashboard'},
+
     { path: '/admin/dashboard', name: 'dashboard', component: DashboardScoop},
+
     { path: '/admin/files', component: FilesScoop },
+
     { path: '/admin/pages', component: PagesScoop, name: 'pages'},
+    { path: '/admin/pages/edit/:id', component: PagesEditScoop, name: 'pages-edit' },
+
     { path: '/admin/permissions', component: PermissionsScoop },
+
     { path: '/admin/settings', component: SettingsScoop },
+
     { path: '/admin/users', component: UsersScoop },
+
     { path: '/admin/creator', component: CreatorScoop },
+    { path: '/admin/creator/edit/:id', component: CreatorEditScoop },
+
+    { path: '/admin/development', component: DevelopmentScoop}
 ];
 
 const router = new VueRouter({

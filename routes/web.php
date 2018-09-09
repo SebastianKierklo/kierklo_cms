@@ -15,14 +15,19 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->group(function (
     Route::post('/settings/remove','SettingController@remove');
     Route::post('/creator-fields','AdminController@getFields');
 
+    //Page
     Route::post('/page/add','PageController@postAdd');
     Route::post('/page/list','PageController@postList');
     Route::post('/page/delete/{id}','PageController@postDelete');
 
-    Route::get('/dashboard', function () {
-        return view('welcome');
-    })->where( 'path', '.*' )->name('dashboard');
+//    Route::get('/dashboard', function () {
+//        return view('welcome');
+//    })->where( 'path', '.*' )->name('dashboard');
 
+    //Vue
+    Route::get('/', function () {
+        return view('welcome');
+    });
     Route::get('{path}', function () {
         return view('welcome');
     })->where( 'path', '.*' );

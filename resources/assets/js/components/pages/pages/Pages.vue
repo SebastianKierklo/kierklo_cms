@@ -13,8 +13,8 @@
           >
             <template slot="items" slot-scope="props">
               <td>{{ props.item.name }}</td>
-              <td><v-icon @click="">table_chart</v-icon></td>
-              <td><v-icon @click="">edit</v-icon></td>
+              <td><v-icon @click="$router.push('/admin/creator/edit/'+props.item.id)">table_chart</v-icon></td>
+              <td><v-icon @click="$router.push('/admin/pages/edit/'+props.item.id)">edit</v-icon></td>
               <td>
                 <v-icon
                     class="m-pointer"
@@ -73,6 +73,9 @@ export default {
               .catch(e =>{
                   Vue.toasted.show(e);
               });
+      },
+      goToEdit: function (id) {
+          this.$router.push('/admin/pages');
       }
   }
 }

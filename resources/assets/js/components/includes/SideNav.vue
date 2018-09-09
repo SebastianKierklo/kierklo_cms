@@ -65,26 +65,15 @@ data: () => ({
       items: [
         { icon: 'dashboard', text: 'Dashboard', link:'/admin/dashboard' },
         { icon: 'laptop', text: 'Podstrony', link: '/admin/pages' },
-        { icon: 'perm_identity' , text: 'Użytkownicy', link: '/admin/users'},
-        { icon: 'verified_user', text: 'Uprawnienia', link: '/admin/permissions'},
+        // { icon: 'perm_identity' , text: 'Użytkownicy', link: '/admin/users'},
+        // { icon: 'verified_user', text: 'Uprawnienia', link: '/admin/permissions'},
         { icon: 'view_quilt', text: 'Kreator', link: '/admin/creator'},
 
-        { icon: 'file_copy', text: 'Pliki', link: '/admin/files'},
+        { icon: 'account_balance', text: 'Nieruchomości', link: '/admin/development'},
+
+        // { icon: 'file_copy', text: 'Pliki', link: '/admin/files'},
         { icon: 'settings', text: 'Ustawienia', link: '/admin/settings'},
 
-        // {
-        //   icon: 'keyboard_arrow_up',
-        //   'icon-alt': 'keyboard_arrow_down',
-        //   text: 'More',
-        //   model: false,
-        //   children: [
-        //     { text: 'Import' },
-        //     { text: 'Export' },
-        //     { text: 'Print' },
-        //     { text: 'Undo changes' },
-        //     { text: 'Other contacts' }
-        //   ]
-        // }
       ]
     })
   }

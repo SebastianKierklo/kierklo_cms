@@ -30,6 +30,25 @@ class PageController extends Controller
         ];
     }
 
+    public function getPage($id){
+            try{
+                $page = Page::where('id',$id)->with([])->get();
+            }catch(Exception $ex){
+                return [
+                    'message' => "Wystąpił błąd: ".$ex,
+                    'result' => false
+                ];
+            }
+            return [
+                'data' => [
+                    'langs' => config('languages.select'),
+                    'pages' => $page
+            ],
+            'message' => "",
+            'result' => true
+        ];
+    }
+
     public function postAdd(Request $request){
         DB::beginTransaction();
         try{
