@@ -3,7 +3,7 @@
     <div class="window">
       <div class="window-title">Strony</div>
         <loader :loading="isLoaded" :message="messageLoaded"></loader>
-        <transition name="fade" mode="out-in">
+        <transition name="fadeC" mode="out-in">
           <v-data-table
                   :headers="headers"
                   :items="pages"

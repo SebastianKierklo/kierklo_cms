@@ -16,7 +16,7 @@
         <div class="window">
             <div class="window-title">Kreator</div>
             <loader :loading="isLoaded" :message="loaderMessage"></loader>
-            <transition name="fade" mode="out-in">
+            <transition name="fadeC" mode="out-in">
                 <v-form v-if="!isLoaded">
                 <v-text-field
                         v-model="form.name"
@@ -76,16 +76,18 @@
                                     flat
                                     @click="addItem()"
                                 >
-                                    <i class="material-icons">add</i>
+                                    <!--<i class="material-icons">add</i>-->
                                     Dodaj
+                                    <v-icon right>add</v-icon>
                                 </v-btn>
                                 <v-btn
                                     color="primary"
                                     v-on:click="dialogAdd = false"
                                     flat
                                 >
-                                    <i class="material-icons">cancel</i>
+                                    <!--<i class="material-icons">cancel</i>-->
                                     <span>Anuluj</span>
+                                    <v-icon right>cancel</v-icon>
                                 </v-btn>
                             </v-card-text>
                         </v-form>
@@ -113,8 +115,8 @@
                     style="margin-top: 15px;"
                     submit
                 >
-                    <i class="material-icons">save</i>
                     <span>Zapisz</span>
+                    <v-icon right>save</v-icon>
                 </v-btn>
             </v-form>
             </transition>
@@ -238,10 +240,5 @@
 <style lang="scss" scoped>
     .v-btn--bottom{
         bottom: 0;
-    }
-    .v-btn{
-        span{
-            margin-left:8px;
-        }
     }
 </style>

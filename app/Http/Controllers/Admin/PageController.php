@@ -14,7 +14,7 @@ class PageController extends Controller
     public function postList(){
         try{
             $pages = Page::all();
-        }catch (Exception $ex){
+        }catch (\Exception $ex){
             return [
                 'message' => "Wystąpił błąd: ".$ex,
                 'result' => false
@@ -32,8 +32,8 @@ class PageController extends Controller
 
     public function getPage($id){
             try{
-                $page = Page::where('id',$id)->with([])->get();
-            }catch(Exception $ex){
+                $page = Page::where('id',$id)->with(['fields','fields.metas'])->first();
+            }catch(\Exception $ex){
                 return [
                     'message' => "Wystąpił błąd: ".$ex,
                     'result' => false
@@ -71,13 +71,13 @@ class PageController extends Controller
                     $newMeta = new Meta();
                     $newMeta->value = 'new-field';
                     $newMeta->lang = $lang['slug'];
-                    $newMeta->field_id = $newField->id;
+                    $newMeta->page_field_id = $newField->id;
                     $newMeta->save();
                 }
             }
 
             DB::commit();
-        }catch(Exception $ex){
+        }catch(\Exception $ex){
             DB::rollBack();
             return [
                 'message' => "Wystąpił błąd: ".$ex,
@@ -93,7 +93,7 @@ class PageController extends Controller
         try{
             $page = Page::find($id);
             $page->delete();
-        }catch(Exception $ex){
+        }catch(\Exception $ex){
             return [
                 'message' => "Wystąpił błąd: ".$ex,
                 'result' => false
@@ -109,7 +109,31 @@ class PageController extends Controller
 
     }
 
-    public function postSetContent(Request $request){
-
+    public function setPageContent(Request $request){
+        DB::beginTransaction();
+        try{
+            $pageRequest = $request->input('page',null);
+            $page = Page::find($pageRequest['id']);
+            $page->name = $pageRequest['name'];
+            $page->save();
+            foreach($pageRequest['fields'] as $field){
+                foreach($field['metas'] as $item){
+                    $meta = Meta::find($item['id']);
+                    $meta->value = $item['value'];
+                    $meta->save();
+                }
+            }
+            DB::commit();
+        }catch(\Exception $ex){
+            DB::rollBack();
+            return [
+                'message' => "Wystąpił błąd: ".$ex,
+                'result' => false
+            ];
+        }
+        return [
+            'message' => "Strona została zapisana prawidłowo",
+            'result' => true
+        ];
     }
 }

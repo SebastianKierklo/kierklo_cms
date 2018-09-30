@@ -1,6 +1,6 @@
 <template>
     <div>
-        <transition name="fade" mode="out-in">
+        <transition name="fadeC" mode="out-in">
             <div class="container-2" v-if="loading">
                 <div class="circle-container">
                     <div class="circle circle-1"></div>

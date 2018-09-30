@@ -3,7 +3,7 @@
         <div class="window">
             <div class="window-title">Ustawienia</div>
             <loader :loading="isLoaded" :message="'Pobiernie danych...'"></loader>
-            <transition name="fade" mode="out-in">
+            <transition name="fadeC" mode="out-in">
                 <v-flex v-if="!isLoaded" xs12 sm12>
                     <v-dialog
                             v-model="dialogAdd"
@@ -24,31 +24,33 @@
                                 Dodawanie ustawienia
                             </v-card-title>
                             <loader :loading="isAdded" :message="'Trwa zapisywanie...'"></loader>
-                            <v-form v-if="!isAdded">
-                                <v-card-text>
-                                    <v-text-field
-                                            v-model="newSetting.name"
-                                            :counter="10"
-                                            label="Nazwa"
-                                            required
-                                    ></v-text-field>
-                                    <v-text-field
-                                            v-model="newSetting.value"
-                                            label="Wartość"
-                                            required
-                                    ></v-text-field>
-                                </v-card-text>
-                                <v-card-actions>
-                                    <v-spacer></v-spacer>
-                                    <v-btn
-                                            color="primary"
-                                            flat
-                                            @click="addSetting()"
-                                    >
-                                        Dodaj
-                                    </v-btn>
-                                </v-card-actions>
-                            </v-form>
+                            <transition name="fadeC" mode="out-in">
+                                <v-form v-if="!isAdded">
+                                    <v-card-text>
+                                        <v-text-field
+                                                v-model="newSetting.name"
+                                                :counter="10"
+                                                label="Nazwa"
+                                                required
+                                        ></v-text-field>
+                                        <v-text-field
+                                                v-model="newSetting.value"
+                                                label="Wartość"
+                                                required
+                                        ></v-text-field>
+                                    </v-card-text>
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn
+                                                color="primary"
+                                                flat
+                                                @click="addSetting()"
+                                        >
+                                            Dodaj
+                                        </v-btn>
+                                    </v-card-actions>
+                                </v-form>
+                            </transition>
                         </v-card>
                     </v-dialog>
                     <v-data-table

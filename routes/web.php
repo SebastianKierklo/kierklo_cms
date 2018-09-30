@@ -19,6 +19,8 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->group(function (
     Route::post('/page/add','PageController@postAdd');
     Route::post('/page/list','PageController@postList');
     Route::post('/page/delete/{id}','PageController@postDelete');
+    Route::post('/page/get/{id}','PageController@getPage');
+    Route::post('/page/set-content','PageController@setPageContent');
 
 //    Route::get('/dashboard', function () {
 //        return view('welcome');

@@ -2,46 +2,49 @@
   <div>
     <v-flex class="window">
       <div class="window-title">Dashboard</div>
-      <v-flex xs12 sm6>
-        <v-card>
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-              <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-            </div>
-          </v-card-title>
-        </v-card>
+      <v-flex class="cont-w">
+        <v-flex xs6>
+          <v-card>
+            <v-card-title primary-title>
+              <div>
+                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
+              </div>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+        <v-flex xs6>
+          <v-card>
+            <v-card-title primary-title>
+              <div>
+                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
+              </div>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+        <v-flex xs6>
+          <v-card>
+            <v-card-title primary-title>
+              <div>
+                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
+              </div>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+        <v-flex xs6>
+          <v-card>
+            <v-card-title primary-title>
+              <div>
+                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
+              </div>
+            </v-card-title>
+          </v-card>
+        </v-flex>
       </v-flex>
-      <v-flex xs12 sm6>
-        <v-card>
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-              <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-            </div>
-          </v-card-title>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 sm6>
-        <v-card>
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-              <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-            </div>
-          </v-card-title>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 sm6 >
-        <v-card>
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-              <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-            </div>
-          </v-card-title>
-        </v-card>
-      </v-flex>
+
     </v-flex>
   </div>
 </template>

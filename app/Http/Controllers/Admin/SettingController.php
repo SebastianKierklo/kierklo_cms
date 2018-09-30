@@ -13,7 +13,7 @@ class SettingController extends Controller
             return [
                 'settings' => Setting::all()
             ];
-        }catch(Exception $e){
+        }catch(\Exception $e){
             return [
                 'message' => "Wystąpił błąd: ".$e,
                 'result' => false
@@ -40,7 +40,7 @@ class SettingController extends Controller
                     'result' => false
                 ];
             }
-        }catch (Exception $e){
+        }catch (\Exception $e){
             return [
                 'message' => "Wystąpił błąd: ".$e,
                 'result' => false
@@ -68,7 +68,7 @@ class SettingController extends Controller
                     'result' => false
                 ];
             }
-        }catch(Exception $e){
+        }catch(\Exception $e){
             return [
                 'message' => "Wystąpił błąd: ".$e,
                 'result' => false

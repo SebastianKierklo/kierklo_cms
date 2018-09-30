@@ -10,13 +10,13 @@ return [
             'value' => 'text',
             'text' => 'Długi tekst'
         ],
-//        [
-//            'value' => 'file',
-//            'text' => 'Plik'
-//        ],
-//        [
-//            'value' => 'image',
-//            'text' => 'Zdjęcie'
-//        ]
+        [
+            'value' => 'file',
+            'text' => 'Plik'
+        ],
+        [
+            'value' => 'photo',
+            'text' => 'Zdjęcie'
+        ]
     ]
 ];

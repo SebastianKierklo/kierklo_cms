@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMetasTable extends Migration
+class CreateGaleryMetasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateMetasTable extends Migration
      */
     public function up()
     {
-        Schema::create('metas', function (Blueprint $table) {
+        Schema::create('galery_metas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('page_field_id');
-            $table->text('value');
-            $table->string('lang',10);
+            $table->string('file_name');
+            $table->string('url');
+            $table->string('url_thumb');
+            $table->integer('galeries_id');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateMetasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('metas');
+        Schema::dropIfExists('galery_metas');
     }
 }

@@ -62,19 +62,27 @@
 <script>
 export default {
 data: () => ({
-      items: [
-        { icon: 'dashboard', text: 'Dashboard', link:'/admin/dashboard' },
-        { icon: 'laptop', text: 'Podstrony', link: '/admin/pages' },
-        // { icon: 'perm_identity' , text: 'Użytkownicy', link: '/admin/users'},
-        // { icon: 'verified_user', text: 'Uprawnienia', link: '/admin/permissions'},
-        { icon: 'view_quilt', text: 'Kreator', link: '/admin/creator'},
+        dialog: false,
+        drawer: null,
+        items: [
+          { icon: 'dashboard', text: 'Dashboard', link:'/admin/dashboard' },
+          { icon: 'laptop', text: 'Strony', link: '/admin/pages' },
+          // { icon: 'perm_identity' , text: 'Użytkownicy', link: '/admin/users'},
+          // { icon: 'verified_user', text: 'Uprawnienia', link: '/admin/permissions'},
+          { icon: 'view_quilt', text: 'Kreator stron', link: '/admin/creator'},
+          { icon:'image', text:'Galerie', link:'/admin/galerys'},
 
-        { icon: 'account_balance', text: 'Nieruchomości', link: '/admin/development'},
+          // { icon: 'keyboard_arrow_up', 'icon-alt': 'keyboard_arrow_down', text: 'Nieruchomości', link: '/admin/development',
+          //     children: [
+          //         { icon: 'flip_to_front', 'icon-alt': 'flip_to_front', text: 'Kategorie', link:'/admin/development/category'},
+          //         { icon: 'list', text: 'Lista ofert', link: '/admin/development', link:'/admin/development/list'}
+          //     ]
+          // },
 
-        // { icon: 'file_copy', text: 'Pliki', link: '/admin/files'},
-        { icon: 'settings', text: 'Ustawienia', link: '/admin/settings'},
+          { icon: 'file_copy', text: 'Pliki', link: '/admin/files'},
+          { icon: 'settings', text: 'Ustawienia', link: '/admin/settings'},
 
-      ]
+        ]
     })
   }
 </script>
