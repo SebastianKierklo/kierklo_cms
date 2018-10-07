@@ -2,8 +2,9 @@
     <div>
         <div class="window">
             <div class="window-title">Dodawanie nowej galerii</div>
-            <input type="file" @change="onFileChange" multiple>
-            <hr>
+            <input type="file" @change="onFileChange"  accept="image/png, image/jpeg" multiple>
+            <br>
+
             <v-list two-line>
                 <template v-for="(item, index) in items">
 
@@ -33,7 +34,7 @@
 
         data: function () {
             return {
-                files: [],
+                selectedFile: [],
                 items: [
                     {
                         avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
@@ -56,17 +57,18 @@
         methods: {
             onFileChange(e){
                 var files = e.target.files;
-                console.log(files);
-                // if(files){
-                //     var files_count = files.length;
-                //     for (let i=0; i<files_count; i++){
-                //         var reader = new FileReader();
-                //         reader.onload = function(e){
-                //             this.selectedFile = e.target.result;
-                //         }
-                //         reader.readAsDataURL(files[i]);
-                //     }
-                // }
+                var vm = this;   // HERE
+                if(files){
+                    var files_count = files.length;
+                    for (let i=0; i<files_count; i++){
+                        var reader = new FileReader();
+                        reader.onload = function(e){
+                            console.log(e);
+                            vm.selectedFile = e.target.result;    // HERE
+                        }
+                        reader.readAsDataURL(files[i]);
+                    }
+                }
             }
         }
     }

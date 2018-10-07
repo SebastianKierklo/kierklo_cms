@@ -99286,13 +99286,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     data: function data() {
         return {
-            files: [],
+            selectedFile: [],
             items: [{
                 avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
                 title: 'Brunch this weekend?',
@@ -99311,17 +99312,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         onFileChange: function onFileChange(e) {
             var files = e.target.files;
-            console.log(files);
-            // if(files){
-            //     var files_count = files.length;
-            //     for (let i=0; i<files_count; i++){
-            //         var reader = new FileReader();
-            //         reader.onload = function(e){
-            //             this.selectedFile = e.target.result;
-            //         }
-            //         reader.readAsDataURL(files[i]);
-            //     }
-            // }
+            var vm = this; // HERE
+            if (files) {
+                var files_count = files.length;
+                for (var i = 0; i < files_count; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        console.log(e);
+                        vm.selectedFile = e.target.result; // HERE
+                    };
+                    reader.readAsDataURL(files[i]);
+                }
+            }
         }
     }
 });
@@ -99344,11 +99346,15 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("input", {
-          attrs: { type: "file", multiple: "" },
+          attrs: {
+            type: "file",
+            accept: "image/png, image/jpeg",
+            multiple: ""
+          },
           on: { change: _vm.onFileChange }
         }),
         _vm._v(" "),
-        _c("hr"),
+        _c("br"),
         _vm._v(" "),
         _c(
           "v-list",
