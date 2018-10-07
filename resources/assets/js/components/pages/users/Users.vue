@@ -1,10 +1,15 @@
 <template>
     <div>
-        <h2>Użytkownicy</h2>
+        <div class="window">
+            <div class="window-title">Galerie</div>
+
+
+        </div>
+
     </div>
 </template>
 <script>
-export default {
-    
-}
+    export default {
+
+    }
 </script>
