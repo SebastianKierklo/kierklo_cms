@@ -38,7 +38,7 @@ export default {
         pages: [],
         headers: [
             {text:'Nazwa',value:'name'},
-            {text:'Edycja(kreator)',sortable:false},
+            {text:'Edycja',sortable:false},
             {text:'Edycja(treść)',sortable:false},
             {text:'Usuń',sortable:false}
         ]
