@@ -22,6 +22,13 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->group(function (
     Route::post('/page/get/{id}','PageController@getPage');
     Route::post('/page/set-content','PageController@setPageContent');
 
+    //Galeries
+    Route::post('/galeries/item','GaleryController@getGalery');
+    Route::post('/galeries/list','GaleryController@getGaleries');
+    Route::post('/galeries/add','GaleryController@add');
+    Route::post('/galeries/edit','GaleryController@edit');
+    Route::post('/galeries/remove','GaleryController@remove');
+
 //    Route::get('/dashboard', function () {
 //        return view('welcome');
 //    })->where( 'path', '.*' )->name('dashboard');

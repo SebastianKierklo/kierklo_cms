@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Page;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Galery;
@@ -12,8 +13,7 @@ class GaleryController extends Controller
     public function getGalery(Request $request){
         try{
             $id = $request->input('id',null);
-            $galery = Galery::where('id',$id)->first();
-
+            $galery = Galery::where('id',$id)->with('metas')->first();
         }catch (\Exception $e){
             return [
                 'message' => "Wystąpił błąd: ".$e,
@@ -24,7 +24,17 @@ class GaleryController extends Controller
 
     public function getGaleries(Request $request){
         try{
-
+            $id = $request->input('id',null);
+            $galery = Galery::all();
+            $pages = Page::all();
+            return [
+                'message' => "",
+                'result' => true,
+                'data' => [
+                    'galeries' => $galery,
+                    'pages' => $pages
+                ]
+            ];
         }catch (\Exception $e){
             return [
                 'message' => "Wystąpił błąd: ".$e,
@@ -35,7 +45,7 @@ class GaleryController extends Controller
 
     public function add(Request $request){
         try{
-
+            dd($request);
         }catch (\Exception $e){
             return [
                 'message' => "Wystąpił błąd: ".$e,
@@ -55,7 +65,7 @@ class GaleryController extends Controller
         }
     }
 
-    public function delete(Request $request){
+    public function remove(Request $request){
         try{
 
         }catch (\Exception $e){

@@ -70,14 +70,14 @@ data: () => ({
           // { icon: 'perm_identity' , text: 'Użytkownicy', link: '/admin/users'},
           // { icon: 'verified_user', text: 'Uprawnienia', link: '/admin/permissions'},
           { icon: 'view_quilt', text: 'Kreator stron', link: '/admin/creator'},
-          { icon:'image', text:'Galerie', link:'/admin/galerys'},
+          { icon:'image', text:'Galerie', link:'/admin/galeries'},
 
           // { icon: 'keyboard_arrow_up', 'icon-alt': 'keyboard_arrow_down', text: 'Nieruchomości', link: '/admin/development',
-          //     children: [
-          //         { icon: 'flip_to_front', 'icon-alt': 'flip_to_front', text: 'Kategorie', link:'/admin/development/category'},
-          //         { icon: 'list', text: 'Lista ofert', link: '/admin/development', link:'/admin/development/list'}
-          //     ]
-          // },
+            //     children: [
+            //         { icon: 'flip_to_front', 'icon-alt': 'flip_to_front', text: 'Kategorie', link:'/admin/development/category'},
+            //         { icon: 'list', text: 'Lista ofert', link: '/admin/development', link:'/admin/development/list'}
+            //     ]
+            // },
 
           { icon: 'file_copy', text: 'Pliki', link: '/admin/files'},
           { icon: 'settings', text: 'Ustawienia', link: '/admin/settings'},

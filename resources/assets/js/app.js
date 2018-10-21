@@ -65,6 +65,7 @@ const UsersScoop = Vue.component('UsersComponent',require('./components/pages/us
 const CreatorScoop = Vue.component('CreatorComponent',require('./components/pages/creator/Creator.vue'));
 const CreatorEditScoop = Vue.component('CreatorEditComponent',require('./components/pages/creator/Creator-edit.vue'));
 const DevelopmentScoop = Vue.component('DevelopmentComponent', require('./components/pages/development/Development.vue'))
+const GaleriesScoop = Vue.component('GaleriesComponent', require('./components/pages/galeries/Galeries'));
 
 // Routes
 const routes = [
@@ -86,7 +87,9 @@ const routes = [
     { path: '/admin/creator', component: CreatorScoop },
     { path: '/admin/creator/edit/:id', component: CreatorEditScoop },
 
-    { path: '/admin/development', component: DevelopmentScoop}
+    { path: '/admin/development', component: DevelopmentScoop},
+
+    { path: '/admin/galeries', component: GaleriesScoop}
 ];
 
 const router = new VueRouter({

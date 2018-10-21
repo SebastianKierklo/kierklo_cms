@@ -29233,7 +29233,7 @@ module.exports = Vue;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(141);
-module.exports = __webpack_require__(441);
+module.exports = __webpack_require__(444);
 
 
 /***/ }),
@@ -29324,9 +29324,10 @@ var UsersScoop = Vue.component('UsersComponent', __webpack_require__(427));
 var CreatorScoop = Vue.component('CreatorComponent', __webpack_require__(430));
 var CreatorEditScoop = Vue.component('CreatorEditComponent', __webpack_require__(435));
 var DevelopmentScoop = Vue.component('DevelopmentComponent', __webpack_require__(438));
+var GaleriesScoop = Vue.component('GaleriesComponent', __webpack_require__(441));
 
 // Routes
-var routes = [{ path: '/admin', redirect: '/admin/dashboard' }, { path: '/admin/dashboard', name: 'dashboard', component: DashboardScoop }, { path: '/admin/files', component: FilesScoop }, { path: '/admin/pages', component: PagesScoop, name: 'pages' }, { path: '/admin/pages/edit/:id', component: PagesEditScoop, name: 'pages-edit' }, { path: '/admin/permissions', component: PermissionsScoop }, { path: '/admin/settings', component: SettingsScoop }, { path: '/admin/users', component: UsersScoop }, { path: '/admin/creator', component: CreatorScoop }, { path: '/admin/creator/edit/:id', component: CreatorEditScoop }, { path: '/admin/development', component: DevelopmentScoop }];
+var routes = [{ path: '/admin', redirect: '/admin/dashboard' }, { path: '/admin/dashboard', name: 'dashboard', component: DashboardScoop }, { path: '/admin/files', component: FilesScoop }, { path: '/admin/pages', component: PagesScoop, name: 'pages' }, { path: '/admin/pages/edit/:id', component: PagesEditScoop, name: 'pages-edit' }, { path: '/admin/permissions', component: PermissionsScoop }, { path: '/admin/settings', component: SettingsScoop }, { path: '/admin/users', component: UsersScoop }, { path: '/admin/creator', component: CreatorScoop }, { path: '/admin/creator/edit/:id', component: CreatorEditScoop }, { path: '/admin/development', component: DevelopmentScoop }, { path: '/admin/galeries', component: GaleriesScoop }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
     routes: routes,
@@ -94130,7 +94131,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       items: [{ icon: 'dashboard', text: 'Dashboard', link: '/admin/dashboard' }, { icon: 'laptop', text: 'Strony', link: '/admin/pages' },
       // { icon: 'perm_identity' , text: 'Użytkownicy', link: '/admin/users'},
       // { icon: 'verified_user', text: 'Uprawnienia', link: '/admin/permissions'},
-      { icon: 'view_quilt', text: 'Kreator stron', link: '/admin/creator' }, { icon: 'image', text: 'Galerie', link: '/admin/galerys' },
+      { icon: 'view_quilt', text: 'Kreator stron', link: '/admin/creator' }, { icon: 'image', text: 'Galerie', link: '/admin/galeries' },
 
       // { icon: 'keyboard_arrow_up', 'icon-alt': 'keyboard_arrow_down', text: 'Nieruchomości', link: '/admin/development',
       //     children: [
@@ -97644,6 +97645,435 @@ if (false) {
 
 /***/ }),
 /* 441 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(11)
+/* script */
+var __vue_script__ = __webpack_require__(442)
+/* template */
+var __vue_template__ = __webpack_require__(443)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/pages/galeries/Galeries.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b18e7206", Component.options)
+  } else {
+    hotAPI.reload("data-v-b18e7206", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 442 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    created: function created() {
+        this.getData();
+    },
+    data: function data() {
+        return {
+            isLoaded: true,
+            loaderMessage: '',
+            pages: [],
+            galeries: [],
+            isAdded: false,
+            dialogAdd: false,
+            newGalery: {
+                name: '',
+                pageId: ''
+            },
+            headers: [{ text: 'Nazwa', value: 'name' }, { text: 'Edycja', sortable: false }, { text: 'Kasuj', sortable: false }]
+        };
+    },
+
+    methods: {
+        addGaleries: function addGaleries() {
+            var _this = this;
+
+            axios.post('/admin/galeries/add', this.newGalery).then(function (response) {
+                if (response.data.result) {}
+                _this.isLoaded = false;
+                Vue.toasted.show(response.data.message);
+            }).catch(function (e) {
+                _this.isLoaded = false;
+                Vue.toasted.show(e);
+            });
+        },
+        getData: function getData() {
+            var _this2 = this;
+
+            this.messageLoaded = 'Pobiernie danych...';
+            axios.post('/admin/galeries/list').then(function (response) {
+                if (response.data.result) {
+                    _this2.pages = response.data.data.pages;
+                    _this2.galeries = response.data.data.galeries;
+                }
+                _this2.isLoaded = false;
+            }).catch(function (e) {
+                _this2.isLoaded = false;
+                Vue.toasted.show(e);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 443 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-flex",
+        { staticClass: "window" },
+        [
+          _c("div", { staticClass: "window-title" }, [_vm._v("Galerie")]),
+          _vm._v(" "),
+          _c("loader", {
+            attrs: { loading: _vm.isLoaded, message: _vm.messageLoaded }
+          }),
+          _vm._v(" "),
+          _c(
+            "transition",
+            { attrs: { name: "fadeC", mode: "out-in" } },
+            [
+              !_vm.isLoaded
+                ? _c(
+                    "v-flex",
+                    { attrs: { xs12: "", sm12: "" } },
+                    [
+                      _c(
+                        "v-dialog",
+                        {
+                          attrs: { width: "500" },
+                          model: {
+                            value: _vm.dialogAdd,
+                            callback: function($$v) {
+                              _vm.dialogAdd = $$v
+                            },
+                            expression: "dialogAdd"
+                          }
+                        },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { slot: "activator", primary: "" },
+                              slot: "activator"
+                            },
+                            [
+                              _vm._v(
+                                "\n                        Dodaj galerie\n                    "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card",
+                            [
+                              _c(
+                                "v-card-title",
+                                {
+                                  staticClass: "headline",
+                                  attrs: { "primary-title": "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            Dodawanie galerii\n                        "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("loader", {
+                                attrs: {
+                                  loading: _vm.isAdded,
+                                  message: "Trwa zapisywanie..."
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "transition",
+                                { attrs: { name: "fadeC", mode: "out-in" } },
+                                [
+                                  !_vm.isAdded
+                                    ? _c(
+                                        "v-form",
+                                        [
+                                          _c(
+                                            "v-card-text",
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: {
+                                                  counter: 10,
+                                                  label: "Nazwa",
+                                                  required: ""
+                                                },
+                                                model: {
+                                                  value: _vm.newGalery.name,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.newGalery,
+                                                      "name",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "newGalery.name"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("v-select", {
+                                                attrs: {
+                                                  items: _vm.pages,
+                                                  label: "Standard"
+                                                },
+                                                model: {
+                                                  value: _vm.newGalery.pageId,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.newGalery,
+                                                      "pageId",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "newGalery.pageId"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-card-actions",
+                                            [
+                                              _c("v-spacer"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    color: "primary",
+                                                    flat: ""
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.addGaleries()
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                        Dodaj\n                                    "
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-data-table", {
+                        staticClass: "elevation-1",
+                        attrs: {
+                          headers: _vm.headers,
+                          items: _vm.galeries,
+                          "hide-actions": ""
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "items",
+                            fn: function(props) {
+                              return [
+                                _c("td", [_vm._v(_vm._s(props.item.name))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("build")
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "i",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "confirm",
+                                          rawName: "v-confirm",
+                                          value: {
+                                            ok: function(dialog) {
+                                              return _vm.removeSetting(
+                                                props.item
+                                              )
+                                            },
+                                            message:
+                                              "Czy na pewno chcesz skasować ten element?"
+                                          },
+                                          expression:
+                                            "{\n                            ok: dialog => removeSetting(props.item),\n                            message: 'Czy na pewno chcesz skasować ten element?'}"
+                                        }
+                                      ],
+                                      staticClass: "material-icons m-pointer"
+                                    },
+                                    [_vm._v("delete")]
+                                  )
+                                ])
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b18e7206", module.exports)
+  }
+}
+
+/***/ }),
+/* 444 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
