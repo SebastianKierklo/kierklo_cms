@@ -56,8 +56,8 @@
                     <v-data-table
                             :headers="headers"
                             :items="galeries"
-                            hide-actions
                             class="elevation-1"
+                            :rowsPerPageText="'Wierszy na stronie'"
                     >
                         <template slot="items" slot-scope="props">
                             <td>{{ props.item.name }}</td>
@@ -105,7 +105,10 @@
                 axios.post('/admin/galeries/add',this.newGalery)
                     .then(response => {
                         if(response.data.result){
-
+                            this.isLoaded = false;
+                            Vue.toasted.show(response.data.message);
+                            this.dialogAdd = false;
+                            this.getData();
                         }
                         this.isLoaded = false;
                         Vue.toasted.show(response.data.message)
@@ -116,6 +119,7 @@
                     });
             },
             getData: function(){
+                this.isLoaded = true;
                 this.messageLoaded = 'Pobiernie danych...';
                 axios.post('/admin/galeries/list')
                     .then(response => {

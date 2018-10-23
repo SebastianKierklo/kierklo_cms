@@ -45,7 +45,14 @@ class GaleryController extends Controller
 
     public function add(Request $request){
         try{
-            dd($request);
+            $newGallery = new Galery();
+            $newGallery->name = $request->input('name');
+            $newGallery->page_id = $request->input('pageId');
+            $newGallery->save();
+            return [
+                'message' => "Galeria została zapisana.",
+                'result' => true
+            ];
         }catch (\Exception $e){
             return [
                 'message' => "Wystąpił błąd: ".$e,

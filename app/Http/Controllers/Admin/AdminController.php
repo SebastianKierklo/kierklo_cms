@@ -14,4 +14,8 @@ class AdminController extends Controller
     public function getFields(Request $request){
         return config('fields');
     }
+
+    public function getDashboard(){
+
+    }
 }

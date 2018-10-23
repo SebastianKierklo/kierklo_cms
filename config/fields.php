@@ -17,6 +17,10 @@ return [
         [
             'value' => 'photo',
             'text' => 'Zdjęcie'
+        ],
+        [
+            'value' => 'gallery',
+            'text' => 'Galeria'
         ]
     ]
 ];

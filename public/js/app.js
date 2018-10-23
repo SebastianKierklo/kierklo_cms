@@ -29322,12 +29322,11 @@ var PermissionsScoop = Vue.component('PermissionsComponent', __webpack_require__
 var SettingsScoop = Vue.component('SettingsComponent', __webpack_require__(424));
 var UsersScoop = Vue.component('UsersComponent', __webpack_require__(427));
 var CreatorScoop = Vue.component('CreatorComponent', __webpack_require__(430));
-var CreatorEditScoop = Vue.component('CreatorEditComponent', __webpack_require__(435));
 var DevelopmentScoop = Vue.component('DevelopmentComponent', __webpack_require__(438));
 var GaleriesScoop = Vue.component('GaleriesComponent', __webpack_require__(441));
 
 // Routes
-var routes = [{ path: '/admin', redirect: '/admin/dashboard' }, { path: '/admin/dashboard', name: 'dashboard', component: DashboardScoop }, { path: '/admin/files', component: FilesScoop }, { path: '/admin/pages', component: PagesScoop, name: 'pages' }, { path: '/admin/pages/edit/:id', component: PagesEditScoop, name: 'pages-edit' }, { path: '/admin/permissions', component: PermissionsScoop }, { path: '/admin/settings', component: SettingsScoop }, { path: '/admin/users', component: UsersScoop }, { path: '/admin/creator', component: CreatorScoop }, { path: '/admin/creator/edit/:id', component: CreatorEditScoop }, { path: '/admin/development', component: DevelopmentScoop }, { path: '/admin/galeries', component: GaleriesScoop }];
+var routes = [{ path: '/admin', redirect: '/admin/dashboard' }, { path: '/admin/dashboard', name: 'dashboard', component: DashboardScoop }, { path: '/admin/files', component: FilesScoop }, { path: '/admin/pages', component: PagesScoop, name: 'pages' }, { path: '/admin/pages/edit/:id', component: PagesEditScoop, name: 'pages-edit' }, { path: '/admin/permissions', component: PermissionsScoop }, { path: '/admin/settings', component: SettingsScoop }, { path: '/admin/users', component: UsersScoop }, { path: '/admin/creator', component: CreatorScoop }, { path: '/admin/creator/edit/:id', component: CreatorScoop }, { path: '/admin/development', component: DevelopmentScoop }, { path: '/admin/galeries', component: GaleriesScoop }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
     routes: routes,
@@ -95405,7 +95404,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             messageLoaded: 'Pobiernie danych...',
             selectedLang: null,
             pages: [],
-            headers: [{ text: 'Nazwa', value: 'name' }, { text: 'Edycja(kreator)', sortable: false }, { text: 'Edycja(treść)', sortable: false }, { text: 'Usuń', sortable: false }]
+            headers: [{ text: 'Nazwa', value: 'name' }, { text: 'Edycja', sortable: false }, { text: 'Edycja(treść)', sortable: false }, { text: 'Usuń', sortable: false }]
         };
     },
 
@@ -96768,6 +96767,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
@@ -96786,7 +96790,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h2", [_vm._v("Użytkownicy")])])
+    return _c("div", [
+      _c("div", { staticClass: "window" }, [
+        _c("div", { staticClass: "window-title" }, [_vm._v("Galerie")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -97444,107 +97452,9 @@ if (false) {
 }
 
 /***/ }),
-/* 435 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(11)
-/* script */
-var __vue_script__ = __webpack_require__(436)
-/* template */
-var __vue_template__ = __webpack_require__(437)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/pages/creator/Creator-edit.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-545a0c70", Component.options)
-  } else {
-    hotAPI.reload("data-v-545a0c70", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 436 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('page edit');
-    },
-    data: function data() {
-        return {};
-    }
-});
-
-/***/ }),
-/* 437 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("v-flex", { staticClass: "window" }, [
-        _c("div", { staticClass: "window-title" }, [
-          _vm._v("Edycja podstrony - kreator")
-        ])
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-545a0c70", module.exports)
-  }
-}
-
-/***/ }),
+/* 435 */,
+/* 436 */,
+/* 437 */,
 /* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -97800,7 +97710,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post('/admin/galeries/add', this.newGalery).then(function (response) {
-                if (response.data.result) {}
+                if (response.data.result) {
+                    _this.isLoaded = false;
+                    Vue.toasted.show(response.data.message);
+                    _this.dialogAdd = false;
+                    _this.getData();
+                }
                 _this.isLoaded = false;
                 Vue.toasted.show(response.data.message);
             }).catch(function (e) {
@@ -97811,6 +97726,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getData: function getData() {
             var _this2 = this;
 
+            this.isLoaded = true;
             this.messageLoaded = 'Pobiernie danych...';
             axios.post('/admin/galeries/list').then(function (response) {
                 if (response.data.result) {
@@ -98002,7 +97918,7 @@ var render = function() {
                         attrs: {
                           headers: _vm.headers,
                           items: _vm.galeries,
-                          "hide-actions": ""
+                          rowsPerPageText: "Wierszy na stronie"
                         },
                         scopedSlots: _vm._u([
                           {
