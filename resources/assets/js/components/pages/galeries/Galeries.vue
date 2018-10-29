@@ -6,20 +6,20 @@
             <transition name="fadeC" mode="out-in">
                 <v-flex v-if="!isLoaded" xs12 sm12>
                     <v-dialog
-                            v-model="dialogAdd"
-                            width="500"
+                        v-model="dialogAdd"
+                        width="500"
                     >
                         <v-btn
-                                slot="activator"
-                                primary
+                            slot="activator"
+                            color="primary"
                         >
                             Dodaj galerie
                         </v-btn>
 
                         <v-card>
                             <v-card-title
-                                    class="headline"
-                                    primary-title
+                                class="headline"
+                                primary-title
                             >
                                 Dodawanie galerii
                             </v-card-title>
@@ -28,23 +28,22 @@
                                 <v-form v-if="!isAdded">
                                     <v-card-text>
                                         <v-text-field
-                                                v-model="newGalery.name"
-                                                :counter="10"
-                                                label="Nazwa"
-                                                required
+                                            v-model="newGalery.name"
+                                            :counter="10"
+                                            label="Nazwa"
+                                            required
                                         ></v-text-field>
                                         <v-select
-                                                :items="pages"
-                                                v-model="newGalery.pageId"
-                                                label="Standard"
+                                            :items="pages"
+                                            v-model="newGalery.pageId"
+                                            label="Strona"
                                         ></v-select>
                                     </v-card-text>
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
                                         <v-btn
-                                                color="primary"
-                                                flat
-                                                @click="addGaleries()"
+                                            color="primary"
+                                            @click="addGaleries()"
                                         >
                                             Dodaj
                                         </v-btn>
@@ -54,15 +53,16 @@
                         </v-card>
                     </v-dialog>
                     <v-data-table
-                            :headers="headers"
-                            :items="galeries"
-                            class="elevation-1"
-                            :rowsPerPageText="'Wierszy na stronie'"
+                        :headers="headers"
+                        :items="galeries"
+                        class="elevation-1"
+                        :rowsPerPageText="'Wierszy na stronie'"
                     >
                         <template slot="items" slot-scope="props">
                             <td>{{ props.item.name }}</td>
                             <td>
-                                <i class="material-icons">build</i>
+                                <!--<i class="material-icons">build</i>-->
+                                <GaleriesEditComponent :btn="false"></GaleriesEditComponent>
                             </td>
                             <td> <i v-confirm="{
                                 ok: dialog => removeSetting(props.item),

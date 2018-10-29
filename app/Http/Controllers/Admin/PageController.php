@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use App\Models\Galery;
+use App\Models\Meta;
 use App\Models\Page;
 use App\Models\Page_field;
-use App\Models\Meta;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -32,7 +33,7 @@ class PageController extends Controller
 
     public function getPage($id){
             try{
-                $page = Page::where('id',$id)->with(['fields','fields.metas'])->first();
+                $page = Page::where('id',$id)->with(['fields','fields.metas','galerys'])->first();
             }catch(\Exception $ex){
                 return [
                     'message' => "Wystąpił błąd: ".$ex,
@@ -61,18 +62,26 @@ class PageController extends Controller
             $newPage->save();
 
             foreach($fields as $field){
-                $newField = new Page_field();
-                $newField->name = $field['name'];
-                $newField->type = $field['type'];
-                $newField->page_id = $newPage->id;
-                $newField->nullable = $field['nullable'];
-                $newField->save();
-                foreach ($langs as $lang){
-                    $newMeta = new Meta();
-                    $newMeta->value = 'new-field';
-                    $newMeta->lang = $lang['slug'];
-                    $newMeta->page_field_id = $newField->id;
-                    $newMeta->save();
+                if($field['type'] != 'gallery'){
+                    $newField = new Page_field();
+                    $newField->name = $field['name'];
+                    $newField->type = $field['type'];
+                    $newField->page_id = $newPage->id;
+                    $newField->nullable = $field['nullable'];
+                    $newField->save();
+                    foreach ($langs as $lang){
+                        $newMeta = new Meta();
+                        $newMeta->value = 'new-field';
+                        $newMeta->lang = $lang['slug'];
+                        $newMeta->page_field_id = $newField->id;
+                        $newMeta->save();
+                    }
+                }else{
+                    $newGallery = new Galery();
+                    $newGallery->name = $field['name'];
+                    $newGallery->page_id = $newPage->id;
+                    $newGallery->type = 'page';
+                    $newGallery->save();
                 }
             }
 

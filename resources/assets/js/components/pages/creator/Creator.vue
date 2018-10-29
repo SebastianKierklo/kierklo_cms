@@ -73,7 +73,6 @@
                                 <v-spacer></v-spacer>
                                 <v-btn
                                     color="primary"
-                                    flat
                                     @click="addItem()"
                                 >
                                     <!--<i class="material-icons">add</i>-->
@@ -83,7 +82,6 @@
                                 <v-btn
                                     color="primary"
                                     v-on:click="dialogAdd = false"
-                                    flat
                                 >
                                     <!--<i class="material-icons">cancel</i>-->
                                     <span>Anuluj</span>

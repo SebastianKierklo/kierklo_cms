@@ -1,21 +1,19 @@
 require('./bootstrap');
 import 'babel-polyfill';
-
-window.Vue = require('vue');
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import Toasted from 'vue-toasted';
 
 import VuejsDialog from 'vuejs-dialog';
 import VueQuillEditor from 'vue-quill-editor'
-
 // require styles
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
-
 // include the default style
 import 'vuejs-dialog/dist/vuejs-dialog.min.css';
+
+window.Vue = require('vue');
 
 // Tell Vue to install the plugin.
 Vue.use(VuejsDialog);
@@ -65,6 +63,7 @@ const UsersScoop = Vue.component('UsersComponent',require('./components/pages/us
 const CreatorScoop = Vue.component('CreatorComponent',require('./components/pages/creator/Creator.vue'));
 const DevelopmentScoop = Vue.component('DevelopmentComponent', require('./components/pages/development/Development.vue'));
 const GaleriesScoop = Vue.component('GaleriesComponent', require('./components/pages/galeries/Galeries'));
+const GaleriesEditScoop = Vue.component('GaleriesEditComponent', require('./components/pages/galeries/Galeries-edit'));
 
 // Routes
 const routes = [

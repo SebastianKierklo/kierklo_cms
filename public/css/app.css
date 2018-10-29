@@ -11888,6 +11888,14 @@ table.v-table tfoot tr td {
   border-radius: 0;
 }
 
+.success,
+.error,
+.warning,
+.info,
+.v-btn__content {
+  color: white !important;
+}
+
 .application .theme--dark.v-toolbar,
 .theme--dark .v-toolbar {
   background-color: #333C54;
@@ -12021,5 +12029,56 @@ table.v-table tfoot tr td {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.dashboard-box {
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.dashboard-box .dashboard-icon {
+  width: 100px;
+}
+
+.dashboard-box .dashboard-icon i {
+  line-height: 150px;
+  font-size: 100px;
+}
+
+.dashboard-box .dashboard-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: calc(100% - 100px);
+}
+
+.dashboard-box .dashboard-title {
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+.dashboard-box .dashboard-count {
+  text-align: right;
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.dash-m {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 

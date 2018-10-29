@@ -13,6 +13,10 @@ class Page extends Model
         return $this->hasMany('App\Models\Page_field');
     }
 
+    public function galerys(){
+        return $this->hasMany('App\Models\Galery','page_id');
+    }
+
     public function getTextAttribute(){
         return $this->name;
     }
@@ -20,4 +24,13 @@ class Page extends Model
     public function getValueAttribute(){
         return $this->id;
     }
+
+    public function delete(){
+        $childs = Page_field::where('page_id',$this->id)->get();
+        foreach($childs as $child){
+            $child->delete();
+        }
+        parent::delete();
+    }
+
 }

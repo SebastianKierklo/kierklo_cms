@@ -1,5 +1,4 @@
 @import "variables";
-// @import "../../../node_modules/vuetify/dist/vuetify.css";
 @import "vuetify.css";
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s;
@@ -30,6 +29,10 @@
   border-color: rgba(0, 0, 0, 0.1) !important;
   border: 1px solid;
   border-radius: 0;
+  //color:white!important;
+}
+.success,.error,.warning,.info,.v-btn__content{
+  color: white!important;
 }
 .application .theme--dark.v-toolbar, .theme--dark .v-toolbar{
   background-color: #333C54;
@@ -133,4 +136,38 @@
 .cont-w{
   display: flex;
   flex-wrap: wrap;
+}
+.dashboard-box{
+  height:150px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  .dashboard-icon{
+    width: 100px;
+    i{
+      line-height: 150px;
+      font-size: 100px;
+    }
+  }
+  .dashboard-div{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 100px);
+  }
+  .dashboard-title{
+    text-align: right;
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+  }
+  .dashboard-count{
+    text-align: right;
+    font-size: 26px;
+    line-height: 30px;
+  }
+}
+.dash-m{
+  padding-left: 10px;
+  padding-right: 10px;
 }

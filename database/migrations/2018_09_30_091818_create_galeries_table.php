@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateGaleriesTable extends Migration
 {
@@ -17,6 +17,7 @@ class CreateGaleriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('page_id');
+            $table->string('type');
             $table->timestamps();
         });
     }

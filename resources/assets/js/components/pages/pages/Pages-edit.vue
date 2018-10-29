@@ -30,28 +30,41 @@
                                 :key="lang.id"
                             >
                                 <v-card flat v-for="field in page.fields" :key="field.id">
-                                    <v-card-actions>
-                                        <!--String-->
+
+                                    <!--String-->
+                                    <v-card-actions v-if="field.type == 'varchar'">
+
                                         <v-text-field
                                             v-for="meta in field.metas"
-                                            v-if="field.type == 'varchar' && meta.lang == lang.value"
+                                            v-if="meta.lang == lang.value"
                                             v-model="meta.value"
                                             :counter="255"
                                             :label="field.name"
                                             required
                                             :key="meta.id"
                                         ></v-text-field>
-
-                                        <!--Text-->
-                                        <quill-editor v-for="meta in field.metas"
-                                                      v-if="field.type == 'text' && meta.lang == lang.value"
-                                                      v-model="meta.value"
-                                                      :key="meta.id">
-                                        </quill-editor>
-
-                                        <!--Plik-->
-
                                     </v-card-actions>
+
+
+                                    <!--Text-->
+                                    <v-card-actions v-if="field.type == 'text'">
+                                        <v-flex reverse="true">
+                                            <v-label>{{field.name}}</v-label>
+                                            <quill-editor v-for="meta in field.metas"
+                                                          v-if="meta.lang == lang.value"
+                                                          v-model="meta.value"
+                                                          :key="meta.id">
+                                            </quill-editor>
+                                        </v-flex>
+                                    </v-card-actions>
+
+                                    <v-card-actions v-if="field.type == 'file'">
+                                        <v-flex reverse="true">
+                                            <v-label>{{field.name}}</v-label>
+                                            <input type="file">
+                                        </v-flex>
+                                    </v-card-actions>
+
                                 </v-card>
                             </v-tab-item>
                         </v-tabs>
@@ -112,7 +125,7 @@
                     .then(response => {
                         console.log(response);
                         if(response.data.result){
-                            Vue.toasted.show(response.data.message)
+                            Vue.toasted.show(response.data.message);
                             this.isLoaded = false;
                         }
                     })
@@ -120,6 +133,12 @@
                         Vue.toasted.show(e);
                         this.isLoaded = false;
                     });
+            },
+            fileChange: function () {
+
+            },
+            photoChange: function () {
+
             }
         }
     }
