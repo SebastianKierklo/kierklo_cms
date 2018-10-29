@@ -61,7 +61,7 @@
                                     <v-card-actions v-if="field.type == 'file'">
                                         <v-flex reverse="true">
                                             <v-label>{{field.name}}</v-label>
-                                            <input type="file">
+                                            <input type="file" @change="fileChange(field)">
                                         </v-flex>
                                     </v-card-actions>
 
@@ -72,7 +72,6 @@
                             color="primary"
                             @click="savePage()"
                             style="margin-top: 15px;"
-
                             submit
                         >
                             <span>Zapisz</span>
@@ -134,11 +133,8 @@
                         this.isLoaded = false;
                     });
             },
-            fileChange: function () {
-
-            },
-            photoChange: function () {
-
+            fileChange: function (a,b,c) {
+                console.log('change',a,b,c);
             }
         }
     }

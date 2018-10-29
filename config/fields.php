@@ -15,10 +15,6 @@ return [
             'text' => 'Plik'
         ],
         [
-            'value' => 'photo',
-            'text' => 'Zdjęcie'
-        ],
-        [
             'value' => 'gallery',
             'text' => 'Galeria'
         ]
